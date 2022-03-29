@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController()
@@ -34,17 +35,29 @@ public class CustomerController {
 
   @GetMapping()
   public CustomerPage findAll(
-      @RequestParam(defaultValue = "1") Integer page,
+      @RequestParam(defaultValue = "0") Integer page,
       @RequestParam(defaultValue = "10") Integer pageSize) {
     CustomerPage customerPage = new CustomerPage();
 
-    Page<CustomerEntity> customerEntityPage =
-        this.repository.findAll(PageRequest.of(page, pageSize));
-    customerPage.setTotalPages(customerEntityPage.getTotalPages());
-    customerPage.setContent(
-        customerEntityPage.getContent().stream()
-            .map(mapper::mapFromEntity)
-            .collect(Collectors.toList()));
+    if (page == 0) {
+      List<CustomerEntity> customers = this.repository.findAll();
+      customerPage.setTotalPages(1);
+      customerPage.setContent(
+          customers.stream().map(mapper::mapFromEntity).collect(Collectors.toList()));
+    } else {
+      Page<CustomerEntity> customerEntityPage =
+          this.repository.findAll(PageRequest.of(page, pageSize));
+      int totalPages = customerEntityPage.getTotalPages();
+      if (page > 1 && page > totalPages) {
+        throw new RuntimeException(
+            "invalid page value of " + page + ". Total pages are " + totalPages);
+      }
+      customerPage.setTotalPages(totalPages);
+      customerPage.setContent(
+          customerEntityPage.getContent().stream()
+              .map(mapper::mapFromEntity)
+              .collect(Collectors.toList()));
+    }
     return customerPage;
   }
 
@@ -55,6 +68,10 @@ public class CustomerController {
 
   @PutMapping("")
   public Customer edit(@RequestBody Customer customer) {
+    if ("asdf".equals(customer.getName())) {
+      throw new RuntimeException("Please use a real name");
+    }
+
     return this.repository
         .findById(customer.getId())
         .map(

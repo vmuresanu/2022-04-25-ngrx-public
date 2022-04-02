@@ -1,11 +1,14 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { fakeAsync, TestBed, TestModuleMetadata, tick, waitForAsync } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import {
+  fakeAsync,
+  TestBed,
+  TestModuleMetadata,
+  tick,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { asyncScheduler, Observable, scheduled } from 'rxjs';
 import { AddressLookuper } from '../../shared/address-lookuper.service';
-import { assertType } from '../../shared/assert-type';
 import { RequestInfoComponent } from './request-info.component';
 import { RequestInfoComponentHarness } from './request-info.component.harness';
 import { RequestInfoComponentModule } from './request-info.component.module';
@@ -18,13 +21,14 @@ describe('Request Info Component', () => {
       providers: [
         {
           provide: AddressLookuper,
-          useValue: { lookup: lookupMock }
-        }
-      ]
+          useValue: { lookup: lookupMock },
+        },
+      ],
     };
-    const fixture = TestBed.configureTestingModule({ ...defaultConfig, ...config }).createComponent(
-      RequestInfoComponent
-    );
+    const fixture = TestBed.configureTestingModule({
+      ...defaultConfig,
+      ...config,
+    }).createComponent(RequestInfoComponent);
     lookupMock.mockReset();
 
     return { fixture, lookupMock };
@@ -32,7 +36,9 @@ describe('Request Info Component', () => {
 
   it('should find an address with the harness', async () => {
     const { fixture, lookupMock } = setup();
-    lookupMock.mockImplementation((query) => scheduled([query === 'Domgasse 5'], asyncScheduler));
+    lookupMock.mockImplementation((query) =>
+      scheduled([query === 'Domgasse 5'], asyncScheduler)
+    );
 
     const harness = await TestbedHarnessEnvironment.harnessForFixture(
       fixture,
@@ -50,16 +56,18 @@ describe('Request Info Component', () => {
 
   it.skip('should find an address', fakeAsync(() => {
     const lookuper = {
-      lookup: (query: string) => scheduled([query === 'Domgasse 5'], asyncScheduler)
+      lookup: (query: string) =>
+        scheduled([query === 'Domgasse 5'], asyncScheduler),
     };
     const fixture = TestBed.configureTestingModule({
       imports: [RequestInfoComponentModule],
-      providers: [{ provide: AddressLookuper, useValue: lookuper }]
+      providers: [{ provide: AddressLookuper, useValue: lookuper }],
     }).createComponent(RequestInfoComponent);
     const input = fixture.debugElement.query(By.css('[data-testid=address]'))
       .nativeElement as HTMLInputElement;
-    const button = fixture.debugElement.query(By.css('[data-testid=btn-search]'))
-      .nativeElement as HTMLButtonElement;
+    const button = fixture.debugElement.query(
+      By.css('[data-testid=btn-search]')
+    ).nativeElement as HTMLButtonElement;
 
     fixture.detectChanges();
     input.value = 'Domgasse 15';
@@ -67,8 +75,9 @@ describe('Request Info Component', () => {
     button.click();
     tick();
     fixture.detectChanges();
-    const lookupResult = fixture.debugElement.query(By.css('[data-testid=lookup-result]'))
-      .nativeElement as HTMLElement;
+    const lookupResult = fixture.debugElement.query(
+      By.css('[data-testid=lookup-result]')
+    ).nativeElement as HTMLElement;
 
     expect(lookupResult.textContent).toContain('Address not found');
 

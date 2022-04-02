@@ -4,7 +4,7 @@
     "name": "Rainer Hahnekamp",
     "email": "rainer.hahnekamp@angulararchitects.io"
   },
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
@@ -34,6 +34,8 @@
     "@nrwl/angular": "13.9.3",
     "application": "^0.1.4",
     "date-fns": "^2.28.0",
+    "immer": "^9.0.12",
+    "ngrx-immer": "^2.0.0",
     "ngx-formly-helpers": "^0.9.7",
     "rxjs": "~7.4.0",
     "tslib": "^2.0.0",

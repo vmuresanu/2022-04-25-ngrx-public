@@ -5465,6 +5465,11 @@ image-size@~0.5.0:
   resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
   integrity sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=
 
+immer@^9.0.12:
+  version "9.0.12"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-9.0.12.tgz#2d33ddf3ee1d247deab9d707ca472c8c942a0f20"
+  integrity sha512-lk7UNmSbAukB5B6dh9fnh5D0bJTOFKxVg2cyJWTYrWRfhLrLMBquONcUs3aFq507hNoIZEDDh8lb8UtOizSMhA==
+
 immutable@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0.tgz#b86f78de6adef3608395efb269a91462797e2c23"
@@ -6957,6 +6962,13 @@ neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
+
+ngrx-immer@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ngrx-immer/-/ngrx-immer-2.0.0.tgz#d984de6cbfae176848957547324181136cb91eb5"
+  integrity sha512-AtChCXDyJgpyN5TJP1Ijg6ThKuo1f9PWA8KeThDVwHaPADmNrY+P5aWmoAmarIbq8/VC8k3LFG9J0qYy3R4NqQ==
+  dependencies:
+    tslib "^2.3.0"
 
 ngx-formly-helpers@^0.9.7:
   version "0.9.7"

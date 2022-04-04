@@ -6,13 +6,15 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 import { formly } from 'ngx-formly-helpers';
 
 @Component({
-  selector: 'app-activate',
-  templateUrl: './activate.component.html'
+  selector: 'eternal-activate',
+  templateUrl: './activate.component.html',
 })
 export class ActivateComponent {
   formGroup = new FormGroup({});
   model = { terms: false, gdpr: false };
-  fields: FormlyFieldConfig[] = [formly.requiredNumber('activationCode', 'Activation Code')];
+  fields: FormlyFieldConfig[] = [
+    formly.requiredNumber('activationCode', 'Activation Code'),
+  ];
   message = '';
 
   constructor(private route: ActivatedRoute, private httpClient: HttpClient) {}
@@ -21,12 +23,12 @@ export class ActivateComponent {
     if (this.formGroup.valid) {
       this.httpClient
         .post(
-          `/security/activate-user-by-code/${this.route.snapshot.paramMap.get('id')}/${
-            this.formGroup.value.activationCode
-          }`,
+          `/security/activate-user-by-code/${this.route.snapshot.paramMap.get(
+            'id'
+          )}/${this.formGroup.value.activationCode}`,
           {}
         )
-        .subscribe((response) => {
+        .subscribe(() => {
           this.message = 'Activation successful. Please sign-in!';
         });
     }

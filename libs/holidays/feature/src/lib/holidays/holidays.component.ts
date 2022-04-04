@@ -1,0 +1,20 @@
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as actions from '../+state/holidays.actions';
+import { fromHolidays } from '../+state/holidays.selectors';
+
+@Component({
+  selector: 'eternal-holidays',
+  templateUrl: './holidays.component.html',
+  styleUrls: ['./holidays.component.scss'],
+})
+export class HolidaysComponent implements OnInit {
+  holidays$ = this.store.select(fromHolidays.get);
+
+  constructor(private store: Store, private httpClient: HttpClient) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(actions.find());
+  }
+}

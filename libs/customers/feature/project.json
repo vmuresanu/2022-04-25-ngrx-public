@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "lib/customers/feature",
+  "sourceRoot": "lib/customers/feature/src",
+  "prefix": "eternal",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/lib/customers/feature"],
+      "options": {
+        "jestConfig": "lib/customers/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "lib/customers/feature/src/**/*.ts",
+          "lib/customers/feature/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

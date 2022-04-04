@@ -1,4 +1,4 @@
-import { selectSelectedCustomer } from '@eternal/customer/feature';
+import { selectSelectedCustomer } from '@eternal/customers/feature';
 import { createSelector } from '@ngrx/store';
 import { bookingFeature } from './booking.reducer';
 

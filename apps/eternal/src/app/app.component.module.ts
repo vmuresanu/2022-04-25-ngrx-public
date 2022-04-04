@@ -7,8 +7,8 @@ import {
   MessageComponentModule,
 } from '@eternal/shared/ui-messaging';
 import { AppComponent } from './app.component';
-import { HeaderComponentModule } from './core/header/header.component';
-import { SidemenuComponentModule } from './core/sidemenu/sidemenu.component';
+import { HeaderComponentModule } from './header/header.component';
+import { SidemenuComponentModule } from './sidemenu/sidemenu.component';
 
 @NgModule({
   declarations: [AppComponent],

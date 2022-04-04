@@ -1,7 +1,7 @@
 <h2>Sign-Up</h2>
 <mat-horizontal-stepper #stepper class="app-sign-up">
   <mat-step label="User Type">
-    <app-sign-up-basic (next)="nextBasic($event)"></app-sign-up-basic>
+    <eternal-sign-up-basic (next)="nextBasic($event)"></eternal-sign-up-basic>
   </mat-step>
   <mat-step label="Detail Data">
     <eternal-sign-up-detail (next)="nextDetail($event)">
@@ -36,7 +36,12 @@
   <mat-step label="Terms">
     <eternal-sign-up-terms (next)="finish()">
       <div class="buttons">
-        <button color="primary" data-testid="btn-sign-up-finish" mat-raised-button type="submit">
+        <button
+          color="primary"
+          data-testid="btn-sign-up-finish"
+          mat-raised-button
+          type="submit"
+        >
           Finish
         </button>
       </div>

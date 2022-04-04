@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { HolidayCardComponentModule } from '../../../../ui/src/lib/holiday-card/holiday-card.component.module';
 import { HolidaysComponent } from './holidays.component';
+import { HolidayCardComponentModule } from '@eternal/holidays/ui';
 
 @NgModule({
   declarations: [HolidaysComponent],

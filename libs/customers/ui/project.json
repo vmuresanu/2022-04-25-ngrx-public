@@ -1,14 +1,14 @@
 {
   "projectType": "library",
-  "root": "lib/customers/ui",
-  "sourceRoot": "lib/customers/ui/src",
+  "root": "libs/customers/ui",
+  "sourceRoot": "libs/customers/ui/src",
   "prefix": "eternal",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/lib/customers/ui"],
+      "outputs": ["coverage/libs/customers/ui"],
       "options": {
-        "jestConfig": "lib/customers/ui/jest.config.js",
+        "jestConfig": "libs/customers/ui/jest.config.js",
         "passWithNoTests": true
       }
     },
@@ -16,8 +16,8 @@
       "executor": "@nrwl/linter:eslint",
       "options": {
         "lintFilePatterns": [
-          "lib/customers/ui/src/**/*.ts",
-          "lib/customers/ui/src/**/*.html"
+          "libs/customers/ui/src/**/*.ts",
+          "libs/customers/ui/src/**/*.html"
         ]
       }
     }

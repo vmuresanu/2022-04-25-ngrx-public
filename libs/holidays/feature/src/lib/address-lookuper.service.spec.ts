@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { fakeAsync } from '@angular/core/testing';
 import { asyncScheduler, firstValueFrom, of, scheduled } from 'rxjs';
-import { assertType } from '../../../../shared/testing/src/lib/assert-type';
 import { AddressLookuper } from './address-lookuper.service';
+import { assertType } from '@eternal/shared/testing';
 
 describe('Address Lookuper', () => {
   it.each([

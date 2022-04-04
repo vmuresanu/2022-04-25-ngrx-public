@@ -1,54 +1,58 @@
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import {
-  TestBed,
-  TestModuleMetadata,
-  waitForAsync,
-} from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { asyncScheduler, Observable, scheduled } from 'rxjs';
-import { AddressLookuper } from '../address-lookuper.service';
+import { fakeAsync, TestBed } from '@angular/core/testing';
 import { RequestInfoComponent } from './request-info.component';
-import { RequestInfoComponentHarness } from './request-info.component.harness';
 import { RequestInfoComponentModule } from './request-info.component.module';
+import { render, screen } from '@testing-library/angular';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
+import userEvent from '@testing-library/user-event';
+
+const ui = {
+  address: () => screen.getByTestId('address'),
+  search: () => screen.getByTestId('btn-search'),
+  message: () => screen.getByTestId('lookup-result'),
+};
+
+const mockLookup = (query: string, response: unknown[]) => {
+  const controller = TestBed.inject(HttpTestingController);
+  controller
+    .expectOne((req) => {
+      return !!req.url.match(/nominatim/) && req.params.get('q') === query;
+    })
+    .flush(response);
+};
 
 describe('Request Info Component', () => {
-  const setup = (config: TestModuleMetadata = {}) => {
-    const lookupMock = jest.fn<Observable<boolean>, [string]>();
-    const defaultConfig: TestModuleMetadata = {
-      imports: [NoopAnimationsModule, RequestInfoComponentModule],
-      providers: [
-        {
-          provide: AddressLookuper,
-          useValue: { lookup: lookupMock },
-        },
-      ],
-    };
-    const fixture = TestBed.configureTestingModule({
-      ...defaultConfig,
-      ...config,
-    }).createComponent(RequestInfoComponent);
-    lookupMock.mockReset();
+  const setup = async (address: string = '') =>
+    render(RequestInfoComponent, {
+      imports: [RequestInfoComponentModule, HttpClientTestingModule],
+      excludeComponentDeclaration: true,
+      componentProperties: { address },
+    });
 
-    return { fixture, lookupMock };
-  };
+  it('should instantiate', fakeAsync(async () => {
+    await setup();
+    await screen.findByText('Request More Information');
+  }));
 
-  it('should find an address with the harness', waitForAsync(async () => {
-    const { fixture, lookupMock } = setup();
-    lookupMock.mockImplementation((query) =>
-      scheduled([query === 'Domgasse 5'], asyncScheduler)
-    );
+  it('should search multiple times', fakeAsync(async () => {
+    await setup();
 
-    const harness = await TestbedHarnessEnvironment.harnessForFixture(
-      fixture,
-      RequestInfoComponentHarness
-    );
+    await userEvent.type(ui.address(), 'Domgasse 15');
+    await userEvent.click(ui.search());
+    mockLookup('Domgasse 15', []);
+    await screen.findByText('Address not found');
 
-    await harness.writeAddress('Domgasse 15');
-    await harness.search();
-    expect(await harness.getResult()).toBe('Address not found');
+    await userEvent.clear(ui.address());
+    await userEvent.type(ui.address(), 'Domgasse 15');
+    await userEvent.click(ui.search());
+    mockLookup('Domgasse 15', [true]);
+    await screen.findByText('Brochure sent');
+  }));
 
-    await harness.writeAddress('Domgasse 5');
-    await harness.search();
-    expect(await harness.getResult()).toBe('Brochure sent');
+  it('should set the address field if given by parent', fakeAsync(async () => {
+    await setup('Domgasse 5');
+    await screen.findByDisplayValue('Domgasse 5');
   }));
 });

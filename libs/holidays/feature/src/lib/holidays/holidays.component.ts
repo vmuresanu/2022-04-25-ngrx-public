@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as actions from '../+state/holidays.actions';
@@ -12,7 +11,7 @@ import { fromHolidays } from '../+state/holidays.selectors';
 export class HolidaysComponent implements OnInit {
   holidays$ = this.store.select(fromHolidays.get);
 
-  constructor(private store: Store, private httpClient: HttpClient) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.store.dispatch(actions.find());

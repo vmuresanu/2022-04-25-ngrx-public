@@ -24,7 +24,7 @@ export class RequestInfoComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.address) {
-      this.formGroup.setValue({ addresss: this.address });
+      this.formGroup.setValue({ address: this.address });
     }
 
     this.lookupResult$ = this.submitter$.pipe(

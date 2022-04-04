@@ -11,21 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { holidaysFeature } from '../+state/holidays.reducer';
 import { HolidaysEffects } from '../+state/holidays.effects';
 import { Configuration } from '@eternal/shared/config';
-
-const ui = {
-  address: () => screen.getByTestId('address'),
-  search: () => screen.getByTestId('btn-search'),
-  message: () => screen.getByTestId('lookup-result'),
-};
-
-const mockLookup = (query: string, response: unknown[]) => {
-  const controller = TestBed.inject(HttpTestingController);
-  controller
-    .expectOne((req) => {
-      return !!req.url.match(/nominatim/) && req.params.get('q') === query;
-    })
-    .flush(response);
-};
+import { createHolidays } from '@eternal/holidays/model';
 
 describe('Request Info Component', () => {
   const setup = async () =>
@@ -52,5 +38,15 @@ describe('Request Info Component', () => {
   it('should instantiate', fakeAsync(async () => {
     await setup();
     await screen.findByText('Choose among our Holidays');
+  }));
+
+  it('should show holiday cards', fakeAsync(async () => {
+    await setup();
+    const controller = TestBed.inject(HttpTestingController);
+    const holidays = createHolidays({ title: 'Vienna' }, { title: 'London' });
+    controller.expectOne((req) => !!req.url.match(/holiday/)).flush(holidays);
+
+    await screen.findByText('Vienna');
+    await screen.findByText('London');
   }));
 });

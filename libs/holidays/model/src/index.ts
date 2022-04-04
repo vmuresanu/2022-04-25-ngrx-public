@@ -1,1 +1,1 @@
-export { Holiday } from './lib/holiday';
+export { Holiday, createHoliday, createHolidays } from './lib/holiday';

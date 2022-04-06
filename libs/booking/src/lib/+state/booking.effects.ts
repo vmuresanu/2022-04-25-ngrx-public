@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { selectSelectedCustomer } from '@eternal/customers/feature';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';

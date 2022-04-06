@@ -22,5 +22,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["domain:holidays", "type:feature"]
 }

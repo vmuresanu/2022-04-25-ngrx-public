@@ -19,5 +19,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["domain:users", "type:feature"]
 }

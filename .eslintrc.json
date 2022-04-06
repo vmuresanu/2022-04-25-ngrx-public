@@ -13,8 +13,56 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
+                "sourceTag": "type:app",
+                "onlyDependOnLibsWithTags": [
+                  "type:feature",
+                  "type:shared:config",
+                  "type:shared:http",
+                  "type:shared:master-data",
+                  "type:shared:security",
+                  "type:shared:ui-messaging"
+                ]
+              },
+              {
+                "sourceTag": "domain:customers",
+                "onlyDependsOnLibsWithTags": ["domain:customers"]
+              },
+              {
+                "sourceTag": "type:feature",
+                "onlyDependOnLibsWithTags": [
+                  "type:data",
+                  "type:ui",
+                  "type:model",
+                  "type:shared:form",
+                  "type:shared:config",
+                  "type:shared:master-data",
+                  "type:shared:security",
+                  "type:shared:ui-messaging"
+                ]
+              },
+              {
+                "sourceTag": "type:data",
+                "onlyDependOnLibsWithTags": [
+                  "type:model",
+                  "type:shared:config",
+                  "type:shared:ui-messaging"
+                ]
+              },
+              {
+                "sourceTag": "type:ui",
+                "onlyDependOnLibsWithTags": [
+                  "type:model",
+                  "type:shared:form",
+                  "type:shared:ui"
+                ]
+              },
+              { "sourceTag": "ui", "bannedExternalImports": ["@ngrx/**"] },
+              {
+                "sourceTag": "type:shared:http",
+                "onlyDependOnLibsWithTags": [
+                  "type:shared:config",
+                  "type:shared:ui-messaging"
+                ]
               }
             ]
           }

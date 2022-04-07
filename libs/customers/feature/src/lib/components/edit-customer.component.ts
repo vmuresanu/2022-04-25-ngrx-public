@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
 import { combineLatest, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { remove, update } from '../+state/customers.actions';
-import { fromCustomer } from '../+state/customers.selectors';
+import { fromCustomers } from '../+state/customers.selectors';
 
 @Component({
   selector: 'eternal-edit-customer',
@@ -29,7 +29,7 @@ export class EditCustomerComponent {
     const countries$ = this.store.select(fromMaster.selectCountries);
     const customer$ = this.store
       .select(
-        fromCustomer.selectById(
+        fromCustomers.selectById(
           Number(this.route.snapshot.paramMap.get('id') || '')
         )
       )

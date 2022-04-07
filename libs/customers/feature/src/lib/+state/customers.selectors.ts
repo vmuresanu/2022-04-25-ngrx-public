@@ -26,7 +26,7 @@ export const selectCustomerWithSelected = createSelector(
     }))
 );
 
-export const fromCustomer = {
+export const fromCustomers = {
   selectCustomers,
   selectCustomerWithSelected,
   selectSelectedCustomer,

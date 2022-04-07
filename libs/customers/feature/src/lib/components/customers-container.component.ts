@@ -3,7 +3,7 @@ import { Component, NgModule } from '@angular/core';
 import { CustomersComponentModule } from '@eternal/customers/ui';
 import { Store } from '@ngrx/store';
 import { select, unselect } from '../+state/customers.actions';
-import { fromCustomer } from '../+state/customers.selectors';
+import { fromCustomers } from '../+state/customers.selectors';
 
 @Component({
   template: ` <eternal-customers
@@ -14,7 +14,7 @@ import { fromCustomer } from '../+state/customers.selectors';
   ></eternal-customers>`,
 })
 export class CustomersContainerComponent {
-  customers$ = this.store.select(fromCustomer.selectCustomerWithSelected);
+  customers$ = this.store.select(fromCustomers.selectCustomerWithSelected);
 
   constructor(private store: Store) {}
 

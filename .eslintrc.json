@@ -39,6 +39,10 @@
                 "onlyDependOnLibsWithTags": ["domain:diary", "domain:shared"]
               },
               {
+                "sourceTag": "domain:holidays",
+                "onlyDependOnLibsWithTags": ["domain:holidays", "domain:shared"]
+              },
+              {
                 "sourceTag": "type:feature",
                 "onlyDependOnLibsWithTags": [
                   "type:data",

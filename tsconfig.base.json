@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@eternal/booking": ["libs/booking/src/index.ts"],
+      "@eternal/bookings": ["libs/bookings/src/index.ts"],
       "@eternal/customers/feature": ["libs/customers/feature/src/index.ts"],
       "@eternal/customers/model": ["libs/customers/model/src/index.ts"],
       "@eternal/customers/ui": ["libs/customers/ui/src/index.ts"],

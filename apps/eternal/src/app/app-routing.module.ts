@@ -29,7 +29,7 @@ import { HomeComponent } from './home.component';
           {
             path: 'bookings',
             loadChildren: () =>
-              import('@eternal/booking').then((m) => m.BookingModule),
+              import('@eternal/bookings').then((m) => m.BookingsModule),
           },
           {
             path: 'holidays',

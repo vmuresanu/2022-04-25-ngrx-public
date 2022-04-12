@@ -4,7 +4,7 @@
   },
   "version": 2,
   "projects": {
-    "booking": "libs/booking",
+    "bookings": "libs/bookings",
     "customers-feature": "libs/customers/feature",
     "customers-model": "libs/customers/model",
     "customers-ui": "libs/customers/ui",

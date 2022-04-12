@@ -22,5 +22,5 @@
       }
     }
   },
-  "tags": ["domain:booking", "type:feature"]
+  "tags": ["domain:bookings", "type:feature"]
 }

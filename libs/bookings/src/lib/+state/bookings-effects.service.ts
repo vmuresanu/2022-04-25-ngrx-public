@@ -5,8 +5,8 @@ import { selectSelectedCustomer } from '@eternal/customers/feature';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { filter, map } from 'rxjs';
-import { load, loaded } from './booking.actions';
-import { Booking } from './booking.reducer';
+import { load, loaded } from './bookings.actions';
+import { Booking } from './bookings.reducer';
 
 const bookings: Map<number, Booking[]> = new Map<number, Booking[]>();
 bookings.set(1, [
@@ -37,7 +37,7 @@ bookings.set(3, [
 ]);
 
 @Injectable()
-export class BookingEffects {
+export class BookingsEffects {
   constructor(
     private httpClient: HttpClient,
     private actions$: Actions,

@@ -24,6 +24,10 @@
                 ]
               },
               {
+                "sourceTag": "domain:bookings",
+                "onlyDependsOnLibsWithTags": ["domain:bookings"]
+              },
+              {
                 "sourceTag": "domain:customers",
                 "onlyDependsOnLibsWithTags": ["domain:customers"]
               },

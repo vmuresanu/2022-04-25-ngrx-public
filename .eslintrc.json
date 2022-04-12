@@ -25,11 +25,18 @@
               },
               {
                 "sourceTag": "domain:bookings",
-                "onlyDependsOnLibsWithTags": ["domain:bookings"]
+                "onlyDependOnLibsWithTags": ["domain:bookings", "domain:shared"]
               },
               {
                 "sourceTag": "domain:customers",
-                "onlyDependsOnLibsWithTags": ["domain:customers"]
+                "onlyDependOnLibsWithTags": [
+                  "domain:customers",
+                  "domain:shared"
+                ]
+              },
+              {
+                "sourceTag": "domain:diary",
+                "onlyDependOnLibsWithTags": ["domain:diary", "domain:shared"]
               },
               {
                 "sourceTag": "type:feature",

@@ -32,6 +32,7 @@
       "@eternal/shared/testing": ["libs/shared/testing/src/index.ts"],
       "@eternal/shared/ui": ["libs/shared/ui/src/index.ts"],
       "@eternal/shared/ui-messaging": ["libs/shared/ui-messaging/src/index.ts"],
+      "@eternal/shared/util": ["libs/shared/util/src/index.ts"],
       "@eternal/user": ["libs/user/src/index.ts"]
     }
   },

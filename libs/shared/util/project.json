@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/shared/util",
+  "sourceRoot": "libs/shared/util/src",
+  "prefix": "eternal",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/util"],
+      "options": {
+        "jestConfig": "libs/shared/util/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/util/src/**/*.ts",
+          "libs/shared/util/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["domain:shared"]
+}

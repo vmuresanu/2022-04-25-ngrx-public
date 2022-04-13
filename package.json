@@ -32,6 +32,7 @@
     "@ngx-formly/core": "^5.11.2",
     "@ngx-formly/material": "^5.11.2",
     "@nrwl/angular": "13.9.3",
+    "@ungap/structured-clone": "^0.3.4",
     "application": "^0.1.4",
     "date-fns": "^2.28.0",
     "immer": "^9.0.12",

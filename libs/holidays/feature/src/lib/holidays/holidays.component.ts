@@ -14,6 +14,6 @@ export class HolidaysComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.store.dispatch(actions.find());
+    this.store.dispatch(actions.load());
   }
 }

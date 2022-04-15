@@ -8,9 +8,9 @@ import * as actions from './holidays.actions';
 
 @Injectable()
 export class HolidaysEffects {
-  find$ = createEffect(() =>
+  load$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(actions.find),
+      ofType(actions.load),
       switchMap(() => this.httpClient.get<Holiday[]>('/holiday')),
       map((holidays) =>
         holidays.map((holiday) => ({
@@ -18,7 +18,7 @@ export class HolidaysEffects {
           imageUrl: `${this.config.baseUrl}${holiday.imageUrl}`,
         }))
       ),
-      map((holidays) => actions.found({ holidays }))
+      map((holidays) => actions.loaded({ holidays }))
     )
   );
 

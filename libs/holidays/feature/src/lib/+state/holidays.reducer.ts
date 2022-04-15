@@ -1,6 +1,6 @@
 import { Holiday } from '@eternal/holidays/model';
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { found } from './holidays.actions';
+import { loaded } from './holidays.actions';
 
 export interface HolidaysState {
   holidays: Holiday[];
@@ -12,7 +12,7 @@ export const holidaysFeature = createFeature({
   name: 'holiday',
   reducer: createReducer(
     initialState,
-    on(found, (state, { holidays }) => ({
+    on(loaded, (state, { holidays }) => ({
       ...state,
       holidays,
     }))

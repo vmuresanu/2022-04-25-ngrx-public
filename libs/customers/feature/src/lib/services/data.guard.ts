@@ -10,7 +10,7 @@ export class DataGuard implements CanActivate {
   constructor(private store: Store) {}
 
   canActivate(): boolean {
-    this.store.dispatch(load());
+    this.store.dispatch(load({ page: 1 }));
     return true;
   }
 }

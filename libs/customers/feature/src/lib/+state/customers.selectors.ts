@@ -16,19 +16,24 @@ const selectSelectedCustomer = createSelector(
     customers.find((customer) => customer.id === selectedId)
 );
 
-export const selectCustomersWithSelected = createSelector(
+export const selectPagedCustomers = createSelector(
   selectCustomers,
   selectSelectedId,
-  (customers, selectedId): (Customer & { selected: boolean })[] =>
-    customers.map((customer) => ({
+  customersFeature.selectPage,
+  customersFeature.selectTotal,
+  (customers, selectedId, page, total) => ({
+    customers: customers.map((customer) => ({
       ...customer,
       selected: customer.id === selectedId,
-    }))
+    })),
+    page,
+    total,
+  })
 );
 
 export const fromCustomers = {
   selectCustomers,
-  selectCustomersWithSelected,
+  selectPagedCustomers,
   selectSelectedCustomer,
   selectById,
 };

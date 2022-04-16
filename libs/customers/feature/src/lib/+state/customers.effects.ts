@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Customer } from '@eternal/customers/model';
@@ -16,13 +16,17 @@ export class CustomersEffects {
   load$ = createEffect(() =>
     this.actions$.pipe(
       ofType(load),
-      switchMap(() =>
-        this.http.get<{ content: Customer[]; totalPages: number }>(
-          this.#baseUrl
-          // { params: new HttpParams().set('page', 10) }
-        )
-      ),
-      map(({ content }) => loaded({ customers: content }))
+      switchMap(({ page }) =>
+        this.http
+          .get<{ content: Customer[]; total: number }>(this.#baseUrl, {
+            params: new HttpParams().set('page', page),
+          })
+          .pipe(
+            map(({ content, total }) =>
+              loaded({ customers: content, total, page })
+            )
+          )
+      )
     )
   );
 
@@ -37,7 +41,7 @@ export class CustomersEffects {
       ),
 
       tap(() => this.router.navigateByUrl('/customers')),
-      map(() => load())
+      map(() => load({ page: 1 }))
     )
   );
 
@@ -49,7 +53,7 @@ export class CustomersEffects {
           .put<Customer[]>(this.#baseUrl, customer)
           .pipe(tap(() => this.uiMessage.info('Customer has been updated')))
       ),
-      map(() => load())
+      map(() => load({ page: 1 }))
     )
   );
 
@@ -60,7 +64,7 @@ export class CustomersEffects {
         this.http.delete<Customer[]>(`${this.#baseUrl}/${customer.id}`)
       ),
       tap(() => this.router.navigateByUrl('/customers')),
-      map(() => load())
+      map(() => load({ page: 1 }))
     )
   );
 

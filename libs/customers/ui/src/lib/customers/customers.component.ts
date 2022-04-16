@@ -9,7 +9,14 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatTableDataSource } from '@angular/material/table';
 import { Customer } from '@eternal/customers/model';
 
-export type CustomerWithSelected = Customer & { selected: boolean };
+export interface CustomerWithSelected extends Customer {
+  selected: boolean;
+}
+export interface CustomersViewModel {
+  customers: CustomerWithSelected[];
+  pageIndex: number;
+  length: number;
+}
 
 @Component({
   selector: 'eternal-customers',
@@ -17,7 +24,7 @@ export type CustomerWithSelected = Customer & { selected: boolean };
   styleUrls: ['./customers.component.scss'],
 })
 export class CustomersComponent implements OnChanges {
-  @Input() customers: CustomerWithSelected[] = [];
+  @Input() viewModel: CustomersViewModel | undefined;
   @Output() setSelected = new EventEmitter<number>();
   @Output() setUnselected = new EventEmitter<number>();
 
@@ -25,7 +32,9 @@ export class CustomersComponent implements OnChanges {
   dataSource = new MatTableDataSource<CustomerWithSelected>([]);
 
   ngOnChanges(): void {
-    this.dataSource.data = this.customers;
+    if (this.viewModel) {
+      this.dataSource.data = this.viewModel.customers;
+    }
   }
 
   toggleSelection(toggleChange: MatSlideToggleChange, id: number) {

@@ -51,6 +51,7 @@
       showFirstLastButtons="true"
       [pageIndex]="viewModel.pageIndex"
       [length]="viewModel.length"
+      (page)="switchPage.emit($event.pageIndex)"
     ></mat-paginator>
   </div>
 

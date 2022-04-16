@@ -21,12 +21,12 @@ export interface CustomersViewModel {
 @Component({
   selector: 'eternal-customers',
   templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.scss'],
 })
 export class CustomersComponent implements OnChanges {
   @Input() viewModel: CustomersViewModel | undefined;
   @Output() setSelected = new EventEmitter<number>();
   @Output() setUnselected = new EventEmitter<number>();
+  @Output() switchPage = new EventEmitter<number>();
 
   displayedColumns = ['name', 'country', 'birthdate', 'action'];
   dataSource = new MatTableDataSource<CustomerWithSelected>([]);

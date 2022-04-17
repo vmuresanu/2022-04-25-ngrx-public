@@ -4,7 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import {
   LoaderComponentModule,
-  MessageComponentModule,
+  MessageModule,
 } from '@eternal/shared/ui-messaging';
 import { AppComponent } from './app.component';
 import { HeaderComponentModule } from './header/header.component';
@@ -19,7 +19,7 @@ import { SidemenuComponentModule } from './sidemenu/sidemenu.component';
     SidemenuComponentModule,
     LoaderComponentModule,
     RouterModule,
-    MessageComponentModule,
+    MessageModule,
   ],
   exports: [AppComponent],
 })

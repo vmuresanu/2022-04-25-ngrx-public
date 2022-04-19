@@ -1,1 +1,1 @@
-export { Customer } from './lib/customer';
+export { Customer, createCustomer, createCustomers } from './lib/customer';

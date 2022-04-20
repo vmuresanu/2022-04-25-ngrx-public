@@ -48,5 +48,5 @@ yarn add -D @ngneat/spectator ng-mocks @testing-library/angular
 
 
 # Playwright
-pnpm add -D @playwright/test
+yarn add -D @playwright/test
 ```

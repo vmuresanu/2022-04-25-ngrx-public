@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { BlinkerDirectiveModule } from '@eternal/shared/ui';
 import { HolidayCardComponent } from './holiday-card.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [HolidayCardComponent],
@@ -15,6 +16,7 @@ import { HolidayCardComponent } from './holiday-card.component';
     RouterModule,
     MatButtonModule,
     BlinkerDirectiveModule,
+    MatIconModule,
   ],
 })
 export class HolidayCardComponentModule {}

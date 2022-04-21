@@ -1,8 +1,7 @@
-
-import {Directive, ElementRef, HostListener, NgModule} from "@angular/core";
+import { Directive, ElementRef, HostListener, NgModule } from '@angular/core';
 
 @Directive({
-  selector: '[eternalBlinker]'
+  selector: '[eternalBlinker]',
 })
 export class BlinkerDirective {
   currentColor = '';
@@ -15,7 +14,7 @@ export class BlinkerDirective {
   }
 
   @HostListener('mouseleave') onMouseLeave() {
-    this.el.nativeElement.style.backgroundColor = '';
+    this.el.nativeElement.style.color = '';
     if (this.intervalId) {
       window.clearInterval(this.intervalId);
       this.intervalId = undefined;
@@ -25,14 +24,12 @@ export class BlinkerDirective {
   private toggle() {
     const color = this.currentColor === '' ? 'coral' : '';
     this.currentColor = color;
-    this.el.nativeElement.style.backgroundColor = color;
+    this.el.nativeElement.style.color = color;
   }
 }
 
 @NgModule({
   declarations: [BlinkerDirective],
-  exports: [BlinkerDirective]
+  exports: [BlinkerDirective],
 })
-export class BlinkerDirectiveModule {
-
-}
+export class BlinkerDirectiveModule {}

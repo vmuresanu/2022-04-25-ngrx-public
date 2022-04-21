@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Holiday } from '@eternal/holidays/model';
 
 @Component({
@@ -7,5 +7,7 @@ import { Holiday } from '@eternal/holidays/model';
   styleUrls: ['./holiday-card.component.scss'],
 })
 export class HolidayCardComponent {
-  @Input() holiday: Holiday | undefined;
+  @Input() holiday: (Holiday & { isFavourite: boolean }) | undefined;
+  @Output() addFavourite = new EventEmitter<number>();
+  @Output() removeFavourite = new EventEmitter<number>();
 }

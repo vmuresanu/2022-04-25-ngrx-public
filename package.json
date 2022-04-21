@@ -38,6 +38,7 @@
     "immer": "^9.0.12",
     "ngrx-immer": "^2.0.0",
     "ngrx-store-localstorage": "^13.0.1",
+    "ngrx-wieder": "^8.0.2",
     "ngx-formly-helpers": "^0.9.7",
     "rxjs": "~7.4.0",
     "tslib": "^2.0.0",

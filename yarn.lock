@@ -7035,6 +7035,13 @@ ngrx-store-localstorage@^13.0.1:
     deepmerge "^4.2.2"
     tslib "^2.3.0"
 
+ngrx-wieder@^8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/ngrx-wieder/-/ngrx-wieder-8.0.2.tgz#09748d96ef162181ba29bf99d6045864fb6ba808"
+  integrity sha512-4kWOLKg3cq4t6oV6WTD5H231hu25ld4Fdzl1JVd4YATEdzLWlHegNFiNNjmnFLn1P/QjYs9eYt6i60j/xwCLZg==
+  dependencies:
+    tslib "^2.0.0"
+
 ngx-formly-helpers@^0.9.7:
   version "0.9.7"
   resolved "https://registry.yarnpkg.com/ngx-formly-helpers/-/ngx-formly-helpers-0.9.7.tgz#546819df2fbb2d0f4fbfa60cc48cfdc914e7052d"

@@ -9,7 +9,7 @@ export interface HolidaysState {
 const initialState: HolidaysState = { holidays: [] };
 
 export const holidaysFeature = createFeature({
-  name: 'holiday',
+  name: 'holidays',
   reducer: createReducer(
     initialState,
     on(loaded, (state, { holidays }) => ({

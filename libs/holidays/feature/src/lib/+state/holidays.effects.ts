@@ -23,7 +23,7 @@ export class HolidaysEffects {
     )
   );
 
-  addFavourites$ = createEffect(() =>
+  addFavourite$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.addFavourite),
       concatMap(({ id }) =>

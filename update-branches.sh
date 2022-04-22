@@ -2,7 +2,7 @@ set -e
 
 git checkout master
 
-branches=(master 01-architecture 02-best-practices 03-testing 04-friends)
+branches=(master 01-architecture 02-best-practices 03-testing 04-friends 05-steroids)
 previous=
 current=
 

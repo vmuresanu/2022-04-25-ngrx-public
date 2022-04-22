@@ -47,6 +47,20 @@
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
+        },
+        "local": {
+          "fileReplacements": [
+            {
+              "replace": "apps/eternal/src/environments/environment.ts",
+              "with": "apps/eternal/src/environments/environment.local.ts"
+            }
+          ],
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
       },
       "defaultConfiguration": "production"
@@ -59,6 +73,9 @@
         },
         "development": {
           "browserTarget": "eternal:build:development"
+        },
+        "local": {
+          "browserTarget": "eternal:build:local"
         }
       },
       "defaultConfiguration": "development"

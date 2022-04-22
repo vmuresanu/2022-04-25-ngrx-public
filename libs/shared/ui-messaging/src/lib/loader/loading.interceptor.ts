@@ -9,6 +9,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LoadingService } from './loading.service';
+import { SILENT_LOAD_CONTEXT } from './silent-load.context';
 
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
@@ -18,8 +19,11 @@ export class LoadingInterceptor implements HttpInterceptor {
     req: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    this.loadingService.start();
+    if (req.context.get(SILENT_LOAD_CONTEXT)) {
+      return next.handle(req);
+    }
 
+    this.loadingService.start();
     return next.handle(req).pipe(
       tap((event) => {
         if (event instanceof HttpResponse) {

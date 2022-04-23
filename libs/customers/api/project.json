@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/customers/api",
+  "sourceRoot": "libs/customers/api/src",
+  "prefix": "eternal",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/customers/api"],
+      "options": {
+        "jestConfig": "libs/customers/api/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/customers/api/src/**/*.ts",
+          "libs/customers/api/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["domain:customers:api", "type:api"]
+}

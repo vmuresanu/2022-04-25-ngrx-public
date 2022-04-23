@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@eternal/bookings": ["libs/bookings/src/index.ts"],
+      "@eternal/customers/api": ["libs/customers/api/src/index.ts"],
       "@eternal/customers/data": ["libs/customers/data/src/index.ts"],
       "@eternal/customers/feature": ["libs/customers/feature/src/index.ts"],
       "@eternal/customers/model": ["libs/customers/model/src/index.ts"],

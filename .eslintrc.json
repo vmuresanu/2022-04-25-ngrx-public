@@ -76,7 +76,7 @@
                   "type:shared:util"
                 ]
               },
-              { "sourceTag": "ui", "bannedExternalImports": ["@ngrx/**"] },
+              { "sourceTag": "type:ui", "bannedExternalImports": ["@ngrx/**"] },
               {
                 "sourceTag": "type:shared:http",
                 "onlyDependOnLibsWithTags": [

@@ -6,7 +6,7 @@ import { Options } from '@eternal/shared/form';
 import { fromMaster } from '@eternal/shared/master-data';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { add } from '../+state/customers.actions';
+import { customersActions } from '@eternal/customers/data';
 
 @Component({
   selector: 'eternal-add-customer',
@@ -33,7 +33,9 @@ export class AddCustomerComponent {
   }
 
   submit(customer: Customer) {
-    this.store.dispatch(add({ customer: { ...customer, id: 0 } }));
+    this.store.dispatch(
+      customersActions.add({ customer: { ...customer, id: 0 } })
+    );
   }
 }
 

@@ -5,10 +5,9 @@ import {
   CustomersViewModel,
 } from '@eternal/customers/ui';
 import { Store } from '@ngrx/store';
-import { select, unselect } from '../+state/customers.actions';
-import { fromCustomers } from '../+state/customers.selectors';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { customersActions, fromCustomers } from '@eternal/customers/data';
 
 @Component({
   template: ` <eternal-customers
@@ -32,11 +31,11 @@ export class CustomersContainerComponent {
   constructor(private store: Store) {}
 
   setSelected(id: number) {
-    this.store.dispatch(select({ id }));
+    this.store.dispatch(customersActions.select({ id }));
   }
 
   setUnselected() {
-    this.store.dispatch(unselect());
+    this.store.dispatch(customersActions.unselect());
   }
 }
 

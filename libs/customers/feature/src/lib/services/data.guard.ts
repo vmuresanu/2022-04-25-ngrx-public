@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { customersActions } from '@eternal/customers/data';
+import { CustomersRepository } from '@eternal/customers/data';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataGuard implements CanActivate {
-  constructor(private store: Store) {}
+  constructor(private customersRepository: CustomersRepository) {}
 
   canActivate(): boolean {
-    this.store.dispatch(customersActions.load({ page: 1 }));
+    this.customersRepository.load(1);
     return true;
   }
 }

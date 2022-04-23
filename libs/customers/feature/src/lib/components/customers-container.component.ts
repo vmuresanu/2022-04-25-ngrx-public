@@ -4,10 +4,9 @@ import {
   CustomersComponentModule,
   CustomersViewModel,
 } from '@eternal/customers/ui';
-import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { customersActions, fromCustomers } from '@eternal/customers/data';
+import { CustomersRepository } from '@eternal/customers/data';
 
 @Component({
   template: ` <eternal-customers
@@ -18,9 +17,8 @@ import { customersActions, fromCustomers } from '@eternal/customers/data';
   ></eternal-customers>`,
 })
 export class CustomersContainerComponent {
-  viewModel$: Observable<CustomersViewModel> = this.store
-    .select(fromCustomers.selectPagedCustomers)
-    .pipe(
+  viewModel$: Observable<CustomersViewModel> =
+    this.customersRepository.pagedCustomers$.pipe(
       map((pagedCustomers) => ({
         customers: pagedCustomers.customers,
         pageIndex: pagedCustomers.page - 1,
@@ -28,14 +26,14 @@ export class CustomersContainerComponent {
       }))
     );
 
-  constructor(private store: Store) {}
+  constructor(private customersRepository: CustomersRepository) {}
 
   setSelected(id: number) {
-    this.store.dispatch(customersActions.select({ id }));
+    this.customersRepository.select(id);
   }
 
   setUnselected() {
-    this.store.dispatch(customersActions.unselect());
+    this.customersRepository.unselect();
   }
 }
 

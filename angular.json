@@ -8,6 +8,7 @@
     "diary-feature": "libs/diary/feature",
     "eternal": "apps/eternal",
     "eternal-e2e": "apps/eternal-e2e",
+    "holidays-data": "libs/holidays/data",
     "holidays-feature": "libs/holidays/feature",
     "holidays-model": "libs/holidays/model",
     "holidays-ui": "libs/holidays/ui",

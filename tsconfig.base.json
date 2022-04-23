@@ -20,6 +20,7 @@
       "@eternal/customers/model": ["libs/customers/model/src/index.ts"],
       "@eternal/customers/ui": ["libs/customers/ui/src/index.ts"],
       "@eternal/diary/feature": ["libs/diary/feature/src/index.ts"],
+      "@eternal/holidays/data": ["libs/holidays/data/src/index.ts"],
       "@eternal/holidays/feature": ["libs/holidays/feature/src/index.ts"],
       "@eternal/holidays/model": ["libs/holidays/model/src/index.ts"],
       "@eternal/holidays/ui": ["libs/holidays/ui/src/index.ts"],

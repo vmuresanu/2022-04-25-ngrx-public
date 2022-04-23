@@ -8,10 +8,9 @@ import { HolidaysComponent } from './holidays.component';
 import { HolidaysComponentModule } from './holidays.component.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { holidaysFeature } from '../+state/holidays.reducer';
-import { HolidaysEffects } from '../+state/holidays.effects';
 import { Configuration } from '@eternal/shared/config';
 import { createHolidays } from '@eternal/holidays/model';
+import { HolidaysDataModule } from '@eternal/holidays/data';
 
 describe('Request Info Component', () => {
   const setup = async () =>
@@ -20,8 +19,7 @@ describe('Request Info Component', () => {
         HolidaysComponentModule,
         StoreModule.forRoot({}),
         EffectsModule.forRoot([]),
-        StoreModule.forFeature(holidaysFeature),
-        EffectsModule.forFeature([HolidaysEffects]),
+        HolidaysDataModule,
         HttpClientTestingModule,
       ],
       providers: [

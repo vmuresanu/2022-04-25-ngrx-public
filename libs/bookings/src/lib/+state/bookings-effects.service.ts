@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
-import { filter, map } from 'rxjs';
-import { load, loaded } from './bookings.actions';
+import { Actions, createEffect } from '@ngrx/effects';
+import { map, pluck } from 'rxjs';
+import { loaded } from './bookings.actions';
 import { Booking } from './bookings.reducer';
 import { CustomersApi } from '@eternal/customers/api';
 
@@ -37,13 +37,10 @@ bookings.set(3, [
 export class BookingsEffects {
   constructor(private actions$: Actions, private customersApi: CustomersApi) {}
 
-  load$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(load),
-      concatLatestFrom(() => this.customersApi.selectedCustomer$),
-      map(([, customerId]) => customerId),
-      filter(Boolean),
-      map((customer) => loaded({ bookings: bookings.get(customer.id) || [] }))
-    )
-  );
+  selectedCustomer$ = createEffect(() => {
+    return this.customersApi.selectedCustomer$.pipe(
+      pluck('id'),
+      map((id) => loaded({ bookings: bookings.get(id) || [] }))
+    );
+  });
 }

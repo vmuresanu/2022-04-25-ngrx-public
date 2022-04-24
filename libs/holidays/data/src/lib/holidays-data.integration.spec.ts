@@ -8,7 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { Configuration } from '@eternal/shared/config';
 import { Store, StoreModule } from '@ngrx/store';
 import { holidaysFeature } from './holidays.reducer';
-import { fromHolidays } from '@eternal/holidays/data';
+import { fromHolidays } from './holidays.selectors';
 import { firstValueFrom } from 'rxjs';
 import { createHolidays } from '@eternal/holidays/model';
 import { get } from './holidays.actions';

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Holiday } from '@eternal/holidays/model';
 import { fromHolidays, holidaysActions } from '@eternal/holidays/data';
@@ -16,14 +16,10 @@ import { fromHolidays, holidaysActions } from '@eternal/holidays/data';
       </eternal-holiday-card>
     </div> `,
 })
-export class HolidaysComponent implements OnInit {
+export class HolidaysComponent {
   holidays$ = this.store.select(fromHolidays.selectHolidaysWithFavourite);
 
   constructor(private store: Store) {}
-
-  ngOnInit(): void {
-    this.store.dispatch(holidaysActions.load());
-  }
 
   addFavourite(id: number) {
     this.store.dispatch(holidaysActions.addFavourite({ id }));

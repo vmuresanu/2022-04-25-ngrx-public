@@ -11,7 +11,10 @@ const selectHolidaysWithFavourite = createSelector(
     }))
 );
 
+const { selectLoadStatus } = holidaysFeature;
+
 export const fromHolidays = {
   get: holidaysFeature.selectHolidays,
   selectHolidaysWithFavourite,
+  selectLoadStatus,
 };

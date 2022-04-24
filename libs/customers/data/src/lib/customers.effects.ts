@@ -81,10 +81,16 @@ export class CustomersEffects {
   update$ = createEffect(() =>
     this.actions$.pipe(
       ofType(update),
-      concatMap(({ customer }) =>
-        this.http
-          .put<Customer[]>(this.#baseUrl, customer)
-          .pipe(tap(() => this.uiMessage.info('Customer has been updated')))
+      concatMap(({ customer, forward, message, callback }) =>
+        this.http.put<Customer[]>(this.#baseUrl, customer).pipe(
+          tap(() => {
+            if (callback !== undefined) {
+              callback();
+            }
+          }),
+          tap(() => this.uiMessage.info(message)),
+          tap(() => this.router.navigateByUrl(forward))
+        )
       ),
       map(() => load({ page: 1 }))
     )

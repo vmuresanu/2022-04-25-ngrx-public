@@ -15,6 +15,7 @@ export class CustomerComponent implements OnInit {
   @Input() customer: Customer | undefined;
   @Input() countries: Options = [];
   @Input() showDeleteButton = true;
+  @Input() disableSubmitButton = false;
   @Output() save = new EventEmitter<Customer>();
   @Output() remove = new EventEmitter<Customer>();
   fields: FormlyFieldConfig[] = [];

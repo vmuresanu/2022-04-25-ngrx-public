@@ -21,7 +21,12 @@ export const added = createAction(
 
 export const update = createAction(
   '[Customers] Update',
-  props<{ customer: Customer }>()
+  props<{
+    customer: Customer;
+    forward: string;
+    message: string;
+    callback?: () => void;
+  }>()
 );
 export const updated = createAction(
   '[Customers] Updated',

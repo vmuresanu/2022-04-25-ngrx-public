@@ -9,10 +9,6 @@ import {
   AddCustomerComponentModule,
 } from './components/add-customer.component';
 import {
-  CustomerRootComponent,
-  CustomerRootComponentModule,
-} from './components/customer-root.component';
-import {
   CustomersContainerComponent,
   CustomersContainerComponentModule,
 } from './components/customers-container.component';
@@ -21,10 +17,12 @@ import {
   EditCustomerComponentModule,
 } from './components/edit-customer.component';
 import { DataGuard } from './services/data.guard';
+import { CustomersRootComponentModule } from './components/customers-root/customers-root.component.module';
+import { CustomersRootComponent } from './components/customers-root/customers-root.component';
 
 @NgModule({
   imports: [
-    CustomerRootComponentModule,
+    CustomersRootComponentModule,
     CustomersContainerComponentModule,
     AddCustomerComponentModule,
     EditCustomerComponentModule,
@@ -32,7 +30,7 @@ import { DataGuard } from './services/data.guard';
       {
         path: '',
         canActivate: [DataGuard],
-        component: CustomerRootComponent,
+        component: CustomersRootComponent,
         children: [
           {
             path: '',

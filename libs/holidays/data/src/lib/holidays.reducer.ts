@@ -1,5 +1,5 @@
 import { Holiday } from '@eternal/holidays/model';
-import { createFeature, createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer } from '@ngrx/store';
 import {
   favouriteAdded,
   favouriteRemoved,
@@ -7,6 +7,8 @@ import {
   loaded,
 } from './holidays.actions';
 import { LoadStatus } from '@eternal/shared/ngrx-utils';
+import { immerOn } from 'ngrx-immer/store';
+import { safeAssign } from '@eternal/shared/util';
 
 export interface HolidaysState {
   holidays: Holiday[];
@@ -24,27 +26,22 @@ export const holidaysFeature = createFeature({
   name: 'holidays',
   reducer: createReducer<HolidaysState>(
     initialState,
-    on(load, (state) => ({
-      ...state,
-      loadStatus: 'loading',
-    })),
-    on(loaded, (state, { holidays }) => ({
-      ...state,
-      loadStatus: 'loaded',
-      holidays,
-    })),
-    on(favouriteAdded, (state, { id }) => {
-      if (state.favouriteIds.includes(id)) {
-        return state;
-      }
-
-      return { ...state, favouriteIds: [...state.favouriteIds, id] };
+    immerOn(load, (state) => {
+      state.loadStatus = 'loading';
     }),
-    on(favouriteRemoved, (state, { id }) => ({
-      ...state,
-      favouriteIds: state.favouriteIds.filter(
-        (favouriteId) => favouriteId !== id
-      ),
-    }))
+    immerOn(loaded, (state, { holidays }) => {
+      safeAssign(state, { loadStatus: 'loaded', holidays });
+    }),
+    immerOn(favouriteAdded, (state, { id }) => {
+      if (state.favouriteIds.includes(id) === false) {
+        state.favouriteIds.push(id);
+      }
+    }),
+    immerOn(favouriteRemoved, (state, { id }) => {
+      const ix = state.favouriteIds.indexOf(id);
+      if (ix > -1) {
+        state.favouriteIds.splice(ix, 1);
+      }
+    })
   ),
 });

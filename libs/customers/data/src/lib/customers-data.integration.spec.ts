@@ -5,10 +5,8 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import {
-  CustomersDataModule,
-  CustomersRepository,
-} from '@eternal/customers/data';
+import { CustomersDataModule } from './customers-data.module';
+import { CustomersRepository } from './customers-repository.service';
 import { Router } from '@angular/router';
 import { provideMock } from '@testing-library/angular/jest-utils';
 import { Configuration } from '@eternal/shared/config';

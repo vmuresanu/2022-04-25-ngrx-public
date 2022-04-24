@@ -1,11 +1,13 @@
 import { Holiday } from '@eternal/holidays/model';
 import { createFeature } from '@ngrx/store';
 import {
-  favouriteAdded,
-  favouriteRemoved,
+  addFavourite,
+  addFavouriteUndo,
   load,
   loaded,
   redo,
+  removeFavourite,
+  removeFavouriteUndo,
   undo,
 } from './holidays.actions';
 import { LoadStatus } from '@eternal/shared/ngrx-utils';
@@ -41,12 +43,12 @@ export const holidaysFeature = createFeature({
     immerOn(loaded, (state, { holidays }) => {
       safeAssign(state, { loadStatus: 'loaded', holidays });
     }),
-    immerOn(favouriteAdded, (state, { id }) => {
+    immerOn(addFavourite, removeFavouriteUndo, (state, { id }) => {
       if (state.favouriteIds.includes(id) === false) {
         state.favouriteIds.push(id);
       }
     }),
-    immerOn(favouriteRemoved, (state, { id }) => {
+    immerOn(removeFavourite, addFavouriteUndo, (state, { id }) => {
       const ix = state.favouriteIds.indexOf(id);
       if (ix > -1) {
         state.favouriteIds.splice(ix, 1);

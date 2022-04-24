@@ -1,6 +1,13 @@
 import { Customer } from '@eternal/customers/model';
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { load, loaded, select, unselect } from './customers.actions';
+import {
+  init,
+  load,
+  loadFailure,
+  loadSuccess,
+  select,
+  unselect,
+} from './customers.actions';
 
 export interface CustomersState {
   customers: Customer[];
@@ -8,6 +15,7 @@ export interface CustomersState {
   total: number;
   selectedId: number | undefined;
   isLoaded: boolean;
+  hasError: boolean;
 }
 
 export const initialState: CustomersState = {
@@ -16,21 +24,32 @@ export const initialState: CustomersState = {
   total: 0,
   selectedId: undefined,
   isLoaded: false,
+  hasError: false,
 };
 
 export const customersFeature = createFeature({
   name: 'customers',
   reducer: createReducer<CustomersState>(
     initialState,
+    on(init, (state) => {
+      if (state.hasError) {
+        return initialState;
+      }
+      return state;
+    }),
     on(load, (state, { page }) => ({
       ...state,
       page,
     })),
-    on(loaded, (state, { customers, total }) => ({
+    on(loadSuccess, (state, { customers, total }) => ({
       ...state,
       customers,
       total,
       isLoaded: true,
+    })),
+    on(loadFailure, (state) => ({
+      ...state,
+      hasError: true,
     })),
     on(select, (state, { id }) => ({
       ...state,

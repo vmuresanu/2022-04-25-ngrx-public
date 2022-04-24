@@ -6,17 +6,19 @@ import { Configuration } from '@eternal/shared/config';
 import { MessageService } from '@eternal/shared/ui-messaging';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { concatMap, filter, map, switchMap, tap } from 'rxjs/operators';
+import { concatMap, filter, map, tap } from 'rxjs/operators';
 import {
   add,
   get,
   init,
   load,
-  loaded,
+  loadFailure,
+  loadSuccess,
   remove,
   update,
 } from './customers.actions';
 import { customersFeature } from './customers.reducer';
+import { safeSwitchMap } from '@eternal/shared/ngrx-utils';
 
 @Injectable()
 export class CustomersEffects {
@@ -45,16 +47,18 @@ export class CustomersEffects {
   load$ = createEffect(() =>
     this.actions$.pipe(
       ofType(load),
-      switchMap(({ page }) =>
-        this.http
-          .get<{ content: Customer[]; total: number }>(this.#baseUrl, {
-            params: new HttpParams().set('page', page),
-          })
-          .pipe(
-            map(({ content, total }) =>
-              loaded({ customers: content, total, page })
-            )
-          )
+      safeSwitchMap(
+        ({ page }) =>
+          this.http
+            .get<{ content: Customer[]; total: number }>(this.#baseUrl, {
+              params: new HttpParams().set('page', page),
+            })
+            .pipe(
+              map(({ content, total }) =>
+                loadSuccess({ customers: content, total, page })
+              )
+            ),
+        () => loadFailure()
       )
     )
   );

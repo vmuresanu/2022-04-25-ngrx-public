@@ -8,5 +8,5 @@ import java.util.List;
 @Data
 public class CustomerPage {
   private List<Customer> content;
-  private Integer totalPages;
+  private Long total;
 }

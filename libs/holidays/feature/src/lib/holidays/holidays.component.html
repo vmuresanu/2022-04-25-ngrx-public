@@ -1,0 +1,29 @@
+<div class="w-36 flex justify-between">
+  <button
+    *ngrxLet="canUndo$ as undo"
+    mat-raised-button
+    class="mr-4"
+    (click)="handleUndo()"
+    [disabled]="!undo"
+  >
+    <mat-icon>undo</mat-icon>
+  </button>
+  <button
+    *ngrxLet="canRedo$ as redo"
+    mat-raised-button
+    (click)="handleRedo()"
+    [disabled]="!redo"
+  >
+    <mat-icon>redo</mat-icon>
+  </button>
+</div>
+<h2>Choose among our Holidays</h2>
+<div class="flex flex-wrap justify-evenly">
+  <eternal-holiday-card
+    *ngFor="let holiday of holidays$ | async; trackBy: byId"
+    [holiday]="holiday"
+    (addFavourite)="addFavourite($event)"
+    (removeFavourite)="removeFavourite($event)"
+  >
+  </eternal-holiday-card>
+</div>

@@ -5,19 +5,12 @@ import { fromHolidays, holidaysActions } from '@eternal/holidays/data';
 
 @Component({
   selector: 'eternal-holidays',
-  template: `<h2>Choose among our Holidays</h2>
-    <div class="flex flex-wrap justify-evenly">
-      <eternal-holiday-card
-        *ngFor="let holiday of holidays$ | async; trackBy: byId"
-        [holiday]="holiday"
-        (addFavourite)="addFavourite($event)"
-        (removeFavourite)="removeFavourite($event)"
-      >
-      </eternal-holiday-card>
-    </div> `,
+  templateUrl: './holidays.component.html',
 })
 export class HolidaysComponent {
   holidays$ = this.store.select(fromHolidays.selectHolidaysWithFavourite);
+  canUndo$ = this.store.select(fromHolidays.selectCanUndo());
+  canRedo$ = this.store.select(fromHolidays.selectCanRedo());
 
   constructor(private store: Store) {}
 
@@ -31,5 +24,13 @@ export class HolidaysComponent {
 
   byId(index: number, holiday: Holiday) {
     return holiday.id;
+  }
+
+  handleUndo() {
+    this.store.dispatch(holidaysActions.undo());
+  }
+
+  handleRedo() {
+    this.store.dispatch(holidaysActions.redo());
   }
 }

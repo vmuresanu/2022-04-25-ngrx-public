@@ -23,6 +23,10 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppComponentModule } from './app.component.module';
+import {
+  LocalStorageEffects,
+  localStorageReducer,
+} from '@eternal/core/local-storage-state';
 
 registerLocaleData(localeDe, 'de-AT');
 
@@ -33,8 +37,15 @@ registerLocaleData(localeDe, 'de-AT');
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot(
+      {},
+      {
+        metaReducers: [
+          localStorageReducer('holidays', 'customers', 'security', 'master'),
+        ],
+      }
+    ),
+    EffectsModule.forRoot([LocalStorageEffects]),
     StoreDevtoolsModule.instrument(),
     SecurityModule,
     FormlyModule.forRoot({

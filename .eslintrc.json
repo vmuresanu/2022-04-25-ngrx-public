@@ -15,6 +15,7 @@
               {
                 "sourceTag": "type:app",
                 "onlyDependOnLibsWithTags": [
+                  "domain:core",
                   "type:feature",
                   "type:shared:config",
                   "type:shared:http",
@@ -30,6 +31,10 @@
                   "domain:customers:api",
                   "domain:shared"
                 ]
+              },
+              {
+                "sourceTag": "domain:core",
+                "onlyDependOnLibsWithTags": ["domain:shared"]
               },
               {
                 "sourceTag": "domain:customers",

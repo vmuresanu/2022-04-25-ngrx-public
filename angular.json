@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "bookings": "libs/bookings",
+    "core-local-storage-state": "libs/core/local-storage-state",
     "customers-api": "libs/customers/api",
     "customers-data": "libs/customers/data",
     "customers-feature": "libs/customers/feature",

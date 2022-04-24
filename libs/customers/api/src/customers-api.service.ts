@@ -7,7 +7,7 @@ import { Customer } from '@eternal/customers/model';
   providedIn: 'root',
 })
 export class CustomersApi {
-  readonly selectedCustomer$: Observable<Customer | undefined> =
+  readonly selectedCustomer$: Observable<Customer> =
     this.customersRepository.selectedCustomer$;
   constructor(private customersRepository: CustomersRepository) {}
 }

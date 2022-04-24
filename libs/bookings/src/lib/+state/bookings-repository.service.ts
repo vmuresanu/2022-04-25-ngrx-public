@@ -1,33 +1,20 @@
-import { combineLatest, filter, map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Booking, bookingsFeature } from './bookings.reducer';
-import { assertDefined, isDefined } from '@eternal/shared/util';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CustomersApi } from '@eternal/customers/api';
-
-interface BookingData {
-  bookings: Booking[];
-  customerName: string;
-  loaded: boolean;
-}
+import * as bookingsActions from './bookings.actions';
 
 @Injectable({ providedIn: 'root' })
 export class BookingsRepository {
-  readonly bookingData$: Observable<BookingData> = combineLatest({
-    customer: this.customersApi.selectedCustomer$,
-    bookings: this.store.select(bookingsFeature.selectBookings),
-    loaded: this.store.select(bookingsFeature.selectLoaded),
-  }).pipe(
-    filter(({ customer }) => isDefined(customer)),
-    map(({ customer, bookings, loaded }) => {
-      assertDefined(customer);
-      return {
-        customerName: customer.name + ', ' + customer.firstname,
-        bookings,
-        loaded,
-      };
-    })
+  readonly bookings$: Observable<Booking[]> = this.store.select(
+    bookingsFeature.selectBookings
   );
+  readonly loaded$: Observable<boolean> = this.store.select(
+    bookingsFeature.selectLoaded
+  );
+  constructor(private store: Store) {}
 
-  constructor(private store: Store, private customersApi: CustomersApi) {}
+  load(): void {
+    this.store.dispatch(bookingsActions.load());
+  }
 }

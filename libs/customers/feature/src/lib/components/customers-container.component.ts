@@ -15,6 +15,7 @@ import { customersActions, fromCustomers } from '@eternal/customers/data';
     [viewModel]="viewModel"
     (setSelected)="setSelected($event)"
     (setUnselected)="setUnselected()"
+    (switchPage)="switchPage($event)"
   ></eternal-customers>`,
 })
 export class CustomersContainerComponent {
@@ -36,6 +37,10 @@ export class CustomersContainerComponent {
 
   setUnselected() {
     this.store.dispatch(customersActions.unselect());
+  }
+
+  switchPage(page: number) {
+    console.log('switch to page ' + page + ' is not implemented');
   }
 }
 

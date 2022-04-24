@@ -1,6 +1,6 @@
 import { HolidaysState } from './holidays.reducer';
 import { createHolidays } from '@eternal/holidays/model';
-import { fromHolidays } from '@eternal/holidays/data';
+import { fromHolidays } from './holidays.selectors';
 
 it('should select the holidays with ids and titles', () => {
   const state: HolidaysState = {

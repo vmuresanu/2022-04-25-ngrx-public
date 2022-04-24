@@ -14,7 +14,7 @@ import {
 } from './components/edit-customer.component';
 import { DataGuard } from './services/data.guard';
 import { CustomersDataModule } from '@eternal/customers/data';
-import { CustomersRootComponentModule } from './components/customers-root/customers-root.component.module';
+import { CustomersRootComponentModule } from './components/customers-root/customers-root-component.module';
 import { CustomersRootComponent } from './components/customers-root/customers-root.component';
 
 @NgModule({

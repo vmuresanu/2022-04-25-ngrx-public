@@ -13,8 +13,14 @@ const selectHolidaysWithFavourite = createSelector(
 
 const { selectLoadStatus } = holidaysFeature;
 
+const selectIdTitles = createSelector(
+  holidaysFeature.selectHolidays,
+  (holidays) => holidays.map(({ id, title }) => ({ id, title }))
+);
+
 export const fromHolidays = {
   get: holidaysFeature.selectHolidays,
   selectHolidaysWithFavourite,
+  selectIdTitles,
   selectLoadStatus,
 };

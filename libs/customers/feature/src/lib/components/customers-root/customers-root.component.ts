@@ -1,13 +1,13 @@
-import { Component, NgModule } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Component } from '@angular/core';
 import { CustomersRepository } from '@eternal/customers/data';
 import { MessageService } from '@eternal/shared/ui-messaging';
+import { Router } from '@angular/router';
 import { first } from 'rxjs';
 
 @Component({
-  template: `<router-outlet></router-outlet>`,
+  templateUrl: './customers-root.component.html',
 })
-export class CustomerRootComponent {
+export class CustomersRootComponent {
   constructor(
     customersRepository: CustomersRepository,
     router: Router,
@@ -21,10 +21,3 @@ export class CustomerRootComponent {
     });
   }
 }
-
-@NgModule({
-  declarations: [CustomerRootComponent],
-  exports: [CustomerRootComponent],
-  imports: [RouterModule],
-})
-export class CustomerRootComponentModule {}

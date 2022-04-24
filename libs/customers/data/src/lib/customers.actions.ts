@@ -1,6 +1,8 @@
 import { Customer } from '@eternal/customers/model';
 import { createAction, props } from '@ngrx/store';
 
+export const init = createAction('[Customers] Init');
+export const get = createAction('[Customers] Get', props<{ page: number }>());
 export const load = createAction('[Customers] Load', props<{ page: number }>());
 export const loaded = createAction(
   '[Customers] Loaded',

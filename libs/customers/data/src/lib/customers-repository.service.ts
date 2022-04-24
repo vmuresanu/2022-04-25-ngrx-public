@@ -30,6 +30,14 @@ export class CustomersRepository {
 
   constructor(private store: Store) {}
 
+  init(): void {
+    this.store.dispatch(customersActions.init());
+  }
+
+  get(page: number): void {
+    this.store.dispatch(customersActions.get({ page }));
+  }
+
   load(page: number = 1): void {
     this.store.dispatch(customersActions.load({ page }));
   }

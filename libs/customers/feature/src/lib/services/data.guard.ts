@@ -9,7 +9,7 @@ export class DataGuard implements CanActivate {
   constructor(private customersRepository: CustomersRepository) {}
 
   canActivate(): boolean {
-    this.customersRepository.load(1);
+    this.customersRepository.init();
     return true;
   }
 }

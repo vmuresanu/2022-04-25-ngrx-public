@@ -1,13 +1,19 @@
 import { Holiday } from '@eternal/holidays/model';
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { favouriteAdded, favouriteRemoved, loaded } from './holidays.actions';
+import { LoadStatus } from '@eternal/shared/ngrx-utils';
 
 export interface HolidaysState {
   holidays: Holiday[];
   favouriteIds: number[];
+  loadStatus: LoadStatus;
 }
 
-const initialState: HolidaysState = { holidays: [], favouriteIds: [] };
+const initialState: HolidaysState = {
+  holidays: [],
+  favouriteIds: [],
+  loadStatus: 'not loaded',
+};
 
 export const holidaysFeature = createFeature({
   name: 'holidays',

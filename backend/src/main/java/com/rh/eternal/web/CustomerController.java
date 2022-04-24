@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController()
-@RequestMapping("customer")
+@RequestMapping("customers")
 @Log4j2
 public class CustomerController {
   private final CustomerRepository repository;
@@ -41,18 +41,19 @@ public class CustomerController {
 
     if (page == 0) {
       List<CustomerEntity> customers = this.repository.findAll();
-      customerPage.setTotalPages(1);
+      customerPage.setTotal(10L);
       customerPage.setContent(
           customers.stream().map(mapper::mapFromEntity).collect(Collectors.toList()));
     } else {
       Page<CustomerEntity> customerEntityPage =
-          this.repository.findAll(PageRequest.of(page, pageSize));
+          this.repository.findAll(PageRequest.of(page-1, pageSize));
+      long total = customerEntityPage.getTotalElements();
       int totalPages = customerEntityPage.getTotalPages();
       if (page > 1 && page > totalPages) {
         throw new RuntimeException(
             "invalid page value of " + page + ". Total pages are " + totalPages);
       }
-      customerPage.setTotalPages(totalPages);
+      customerPage.setTotal(total);
       customerPage.setContent(
           customerEntityPage.getContent().stream()
               .map(mapper::mapFromEntity)

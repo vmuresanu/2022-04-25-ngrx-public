@@ -27,6 +27,13 @@ export class CustomersRepository {
     customersFeature.selectHasError
   );
 
+  readonly canUndo$: Observable<boolean> = this.store.select(
+    fromCustomers.selectCanUndo()
+  );
+
+  readonly canRedo$: Observable<boolean> = this.store.select(
+    fromCustomers.selectCanRedo()
+  );
   findById(id: number): Observable<Customer> {
     return this.store
       .select(fromCustomers.selectById(id))
@@ -72,5 +79,12 @@ export class CustomersRepository {
 
   unselect(): void {
     this.store.dispatch(customersActions.unselect());
+  }
+
+  undo(): void {
+    this.store.dispatch(customersActions.undo());
+  }
+  redo(): void {
+    this.store.dispatch(customersActions.redo());
   }
 }

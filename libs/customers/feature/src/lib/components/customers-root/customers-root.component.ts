@@ -1,15 +1,15 @@
-import { Component, NgModule } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CustomersRepository } from '@eternal/customers/data';
 import { MessageService } from '@eternal/shared/ui-messaging';
 import { first } from 'rxjs';
 
 @Component({
-  template: `<router-outlet></router-outlet>`,
+  templateUrl: './customers-root.component.html',
 })
-export class CustomerRootComponent {
+export class CustomersRootComponent {
   constructor(
-    customersRepository: CustomersRepository,
+    public customersRepository: CustomersRepository,
     router: Router,
     messageService: MessageService
   ) {
@@ -20,11 +20,12 @@ export class CustomerRootComponent {
       );
     });
   }
-}
 
-@NgModule({
-  declarations: [CustomerRootComponent],
-  exports: [CustomerRootComponent],
-  imports: [RouterModule],
-})
-export class CustomerRootComponentModule {}
+  handleUndo() {
+    this.customersRepository.undo();
+  }
+
+  handleRedo() {
+    this.customersRepository.redo();
+  }
+}

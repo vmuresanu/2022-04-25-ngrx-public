@@ -1,0 +1,20 @@
+<div class="w-36 flex justify-between">
+  <button
+    *ngrxLet="customersRepository.canUndo$ as undo"
+    mat-raised-button
+    class="mr-4"
+    (click)="handleUndo()"
+    [disabled]="!undo"
+  >
+    <mat-icon>undo</mat-icon>
+  </button>
+  <button
+    *ngrxLet="customersRepository.canRedo$ as redo"
+    mat-raised-button
+    (click)="handleRedo()"
+    [disabled]="!redo"
+  >
+    <mat-icon>redo</mat-icon>
+  </button>
+</div>
+<router-outlet></router-outlet>

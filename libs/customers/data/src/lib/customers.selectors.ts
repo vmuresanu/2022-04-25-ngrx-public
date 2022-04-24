@@ -1,6 +1,7 @@
 import { Customer } from '@eternal/customers/model';
 import { createSelector } from '@ngrx/store';
 import { customersFeature } from './customers.reducer';
+import { createHistorySelectors } from 'ngrx-wieder';
 
 const { selectCustomers, selectSelectedId } = customersFeature;
 
@@ -31,9 +32,15 @@ export const selectPagedCustomers = createSelector(
   })
 );
 
+const { selectCanRedo, selectCanUndo } = createHistorySelectors(
+  customersFeature.selectCustomersState
+);
+
 export const fromCustomers = {
   selectCustomers,
   selectPagedCustomers,
   selectSelectedCustomer,
   selectById,
+  selectCanRedo,
+  selectCanUndo,
 };

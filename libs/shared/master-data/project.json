@@ -22,5 +22,5 @@
       }
     }
   },
-  "tags": ["data:shared"]
+  "tags": ["domain:shared", "type:shared:master-data"]
 }

@@ -8,8 +8,8 @@ export interface BasicData {
 }
 
 @Component({
-  selector: 'app-sign-up-basic',
-  templateUrl: './basic.component.html'
+  selector: 'eternal-sign-up-basic',
+  templateUrl: './basic.component.html',
 })
 export class BasicComponent {
   @Output() next = new EventEmitter<BasicData>();

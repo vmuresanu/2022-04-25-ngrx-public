@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/customers/ui",
+  "sourceRoot": "libs/customers/ui/src",
+  "prefix": "eternal",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/customers/ui"],
+      "options": {
+        "jestConfig": "libs/customers/ui/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/customers/ui/src/**/*.ts",
+          "libs/customers/ui/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["domain:customers", "type:ui"]
+}

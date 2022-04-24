@@ -6,7 +6,9 @@ import { LoadingService } from './loading.service';
 @Component({
   selector: 'eternal-loader',
   template: `<mat-progress-bar
-    *ngIf="(loadingService.loading$ | async) === true"
+    [ngStyle]="{
+      visibility: (loadingService.loading$ | async) ? 'visible' : 'hidden'
+    }"
     mode="indeterminate"
   ></mat-progress-bar>`,
 })

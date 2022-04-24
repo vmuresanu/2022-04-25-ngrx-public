@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { UserLoaderGuard } from './core/user-loader.guard';
+import { UserLoaderGuard } from './services/user-loader.guard';
 import { HomeComponent } from './home.component';
 
 @NgModule({
@@ -20,24 +20,29 @@ import { HomeComponent } from './home.component';
               import('@eternal/user').then((m) => m.UserModule),
           },
           {
-            path: 'customer',
+            path: 'customers',
             loadChildren: () =>
-              import('@eternal/customer/feature').then(
-                (m) => m.CustomerFeatureModule
+              import('@eternal/customers/feature').then(
+                (m) => m.CustomersFeatureModule
               ),
+          },
+          {
+            path: 'bookings',
+            loadChildren: () =>
+              import('@eternal/bookings').then((m) => m.BookingsModule),
           },
           {
             path: 'holidays',
             loadChildren: () =>
-              import('./holidays/holidays.module').then(
-                (m) => m.HolidaysModule
+              import('@eternal/holidays/feature').then(
+                (m) => m.HolidaysFeatureModule
               ),
           },
           {
             path: 'diary',
             loadChildren: () =>
-              import('./diary/diary.routes.module').then(
-                (m) => m.DiaryRoutesModule
+              import('@eternal/diary/feature').then(
+                (m) => m.DiaryFeatureModule
               ),
           },
         ],

@@ -1,1 +1,1 @@
-export * from './lib/holidays-model.module';
+export { Holiday, createHoliday, createHolidays } from './lib/holiday';

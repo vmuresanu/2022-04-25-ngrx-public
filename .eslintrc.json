@@ -13,8 +13,80 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
+                "sourceTag": "type:app",
+                "onlyDependOnLibsWithTags": [
+                  "type:feature",
+                  "type:shared:config",
+                  "type:shared:http",
+                  "type:shared:master-data",
+                  "type:shared:security",
+                  "type:shared:ui-messaging"
+                ]
+              },
+              {
+                "sourceTag": "domain:bookings",
+                "onlyDependOnLibsWithTags": ["domain:bookings", "domain:shared"]
+              },
+              {
+                "sourceTag": "domain:customers",
+                "onlyDependOnLibsWithTags": [
+                  "domain:customers",
+                  "domain:shared"
+                ]
+              },
+              {
+                "sourceTag": "domain:diary",
+                "onlyDependOnLibsWithTags": ["domain:diary", "domain:shared"]
+              },
+              {
+                "sourceTag": "domain:holidays",
+                "onlyDependOnLibsWithTags": ["domain:holidays", "domain:shared"]
+              },
+              {
+                "sourceTag": "type:feature",
+                "onlyDependOnLibsWithTags": [
+                  "type:data",
+                  "type:ui",
+                  "type:model",
+                  "type:shared:form",
+                  "type:shared:config",
+                  "type:shared:master-data",
+                  "type:shared:ngrx-utils",
+                  "type:shared:security",
+                  "type:shared:ui-messaging",
+                  "type:shared:util"
+                ]
+              },
+              {
+                "sourceTag": "type:data",
+                "onlyDependOnLibsWithTags": [
+                  "type:model",
+                  "type:shared:config",
+                  "type:shared:ui-messaging",
+                  "type:shared:ngrx-utils",
+                  "type:shared:util"
+                ]
+              },
+              {
+                "sourceTag": "type:ui",
+                "onlyDependOnLibsWithTags": [
+                  "type:model",
+                  "type:shared:form",
+                  "type:shared:ui",
+                  "type:shared:util"
+                ]
+              },
+              { "sourceTag": "type:ui", "bannedExternalImports": ["@ngrx/**"] },
+              {
+                "sourceTag": "type:shared:http",
+                "onlyDependOnLibsWithTags": [
+                  "type:shared:config",
+                  "type:shared:ui-messaging"
+                ]
+              },
+              {
+                "sourceTag": "type:shared:ngrx-utils",
+                "onlyDependOnLibsWithTags": ["type:shared:util"]
               }
             ]
           }

@@ -1,1 +1,1 @@
-export * from './lib/holidays-ui.module';
+export { HolidayCardComponentModule } from './lib/holiday-card/holiday-card.component.module';

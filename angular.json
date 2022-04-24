@@ -1,9 +1,11 @@
 {
   "version": 2,
   "projects": {
-    "customer-feature": "libs/customer/feature",
-    "customer-model": "libs/customer/model",
-    "customer-ui": "libs/customer/ui",
+    "bookings": "libs/bookings",
+    "customers-feature": "libs/customers/feature",
+    "customers-model": "libs/customers/model",
+    "customers-ui": "libs/customers/ui",
+    "diary-feature": "libs/diary/feature",
     "eternal": "apps/eternal",
     "eternal-e2e": "apps/eternal-e2e",
     "holidays-feature": "libs/holidays/feature",
@@ -15,7 +17,10 @@
     "shared-master-data": "libs/shared/master-data",
     "shared-ngrx-utils": "libs/shared/ngrx-utils",
     "shared-security": "libs/shared/security",
+    "shared-testing": "libs/shared/testing",
+    "shared-ui": "libs/shared/ui",
     "shared-ui-messaging": "libs/shared/ui-messaging",
+    "shared-util": "libs/shared/util",
     "user": "libs/user"
   }
 }
